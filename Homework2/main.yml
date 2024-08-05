@@ -1,0 +1,39 @@
+- hosts: all
+  become: yes
+  name: Create users and groups
+  tasks: 
+  - name: Create users
+    user: 
+      name: "{{ item }}"
+      state: present 
+    loop:
+      - Zhanyl
+      - tim
+      - ann
+
+  - name: Create group devops
+    group: 
+      name: devops
+      state: present
+
+  - name: Create group qa
+    group:
+      name: qa
+      state: present
+
+  - name: Add the user Zhanyl to devops group
+    ansible.builtin.user:
+      name: Zhanyl
+      group: devops
+      append: yes
+
+  - name: Add the users tim and ann to qa group
+    ansible.builtin.user:
+      name: "{{ item }}"
+      group: qa
+      append: yes
+    loop: 
+      - tim
+      - ann
+    
+    
