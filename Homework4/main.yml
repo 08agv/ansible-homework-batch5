@@ -1,0 +1,13 @@
+- hosts: 3.134.91.135
+  name: Create user and group
+  tasks: 
+  - name: Create user "tim"
+    user: 
+      name: tim
+      state: present
+
+  - name: Create group devops
+    group: 
+      name: devops
+      state: present
+
